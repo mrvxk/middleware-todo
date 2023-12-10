@@ -1,0 +1,20 @@
+quarkus:
+  swagger-ui:
+    always-include: true
+  smallrye-openapi:
+    info:
+      title: Example API
+      dev:
+        title: Example API (development)
+      test:
+        title: Example API (test)
+      version: 1.0.1
+      description: Just an example service
+      terms-of-service: Your terms here
+      contact:
+        email: techsupport@example.com
+        name: Example API Support
+        url: http://exampleurl.com/contact
+      license:
+        name: Apache 2.0
+        url: https://www.apache.org/licenses/LICENSE-2.0.html

@@ -3,6 +3,6 @@ package de.klein;
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
 @QuarkusIntegrationTest
-class GreetingResourceIT extends GreetingResourceTest {
+class TodoControllerIT extends TodoControllerTest {
     // Execute the same tests but in packaged mode.
 }

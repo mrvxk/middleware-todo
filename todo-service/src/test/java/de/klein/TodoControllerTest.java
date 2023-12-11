@@ -7,7 +7,7 @@ import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
-class GreetingResourceTest {
+class TodoControllerTest {
     @Test
     void testHelloEndpoint() {
         given().when()

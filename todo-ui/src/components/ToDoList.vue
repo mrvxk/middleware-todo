@@ -33,12 +33,11 @@
 </template>
 
 
-
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue';
-import { Api, TodoResource } from "@/api/TodoService";
+import {ref, reactive, onMounted} from 'vue';
+import {Api, TodoResource} from "@/api/TodoService";
 
-const api = new Api({ baseUrl: 'http://localhost:8080' });
+const api = new Api({baseUrl: 'http://localhost:8080'});
 let data = ref<TodoResource[]>([]);
 let editingStatus = reactive(new Map<string, boolean>());
 
@@ -97,19 +96,15 @@ const deleteTodo = async (id: string) => {
   flex-grow: 1;
 }
 
-.todo-input, .todo-textarea {
-  width: 100%;
-  margin-right: 20px;
-  box-sizing: border-box;
-}
-
 .todo-title {
+  width: 100px;
   margin: 0;
   font-weight: bold;
   margin-right: 10px;
 }
 
 .todo-subtitle {
+  width: 100px;
   margin: 0;
 }
 
@@ -126,12 +121,17 @@ const deleteTodo = async (id: string) => {
   background-color: #ff3333;
 }
 
+.todo-edit-fields {
+  display: flex;
+  gap: 10px; /* Fügt einen Abstand zwischen den Feldern hinzu */
+}
+
 .todo-input, .todo-textarea {
-  width: 100%;
+  width: 100px;
   margin-right: 20px;
   box-sizing: border-box;
-  border: 1px solid transparent; /* Standard-Border, unsichtbar */
-  padding: 8px; /* Etwas Padding für bessere Lesbarkeit */
+  border: 1px solid transparent;
+  padding: 8px;
 }
 
 /* Stile für die Eingabefelder im Bearbeitungsmodus */

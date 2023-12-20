@@ -1,4 +1,8 @@
 quarkus:
+  http:
+    cors:
+      ~: true
+      origins: "*"
   swagger-ui:
     always-include: true
   smallrye-openapi:

@@ -2,8 +2,13 @@ package de.klein.domain;
 
 import java.util.UUID;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public abstract class EntityParent {
 
-    @EqualsAndHashCode.Include private UUID id;
+    @Setter @EqualsAndHashCode.Include private UUID id;
 }

@@ -8,17 +8,14 @@ import de.klein.services.TodoService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-
 import java.util.Collection;
 import java.util.UUID;
-
 import org.jboss.resteasy.reactive.RestResponse;
 
 @Path("/todos")
 public class TodoController {
 
-    @Inject
-    TodoService todoService;
+    @Inject TodoService todoService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

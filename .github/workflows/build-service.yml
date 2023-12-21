@@ -1,4 +1,4 @@
-name: Quarkus Docker Image Build
+name: Quarkus JVM Docker Image Build
 
 on:
   push:

@@ -1,0 +1,15 @@
+quarkus:
+  hibernate-orm:
+      database:
+        generation: create
+  datasource:
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/quarkus_demo
+    username: postgres
+    password: sercret
+  http:
+    cors:
+      ~: true
+      origins: "*"
+  swagger-ui:
+    always-include: true

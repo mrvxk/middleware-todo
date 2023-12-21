@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.UUID;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jboss.resteasy.reactive.common.NotImplementedYet;
 
 @Slf4j
 @ApplicationScoped
@@ -26,7 +25,7 @@ public class TodoService {
         throw new NotImplementedYet();
     }
 
-    public ToDo update(final ToDo externalTodo) {
+    public ToDo update(final UUID id, final ToDo externalTodo) {
         log.info("Update todo: {}", externalTodo);
         throw new NotImplementedYet();
     }

@@ -47,7 +47,7 @@ public class TodoController {
     @Consumes(MediaType.APPLICATION_JSON)
     public RestResponse<TodoResource> update(final UpdateTodoRequest request) {
         final ToDo externalTodo = UpdateTodoRequest.MAPPER.mapToEntity(request);
-        final ToDo internalTodo = todoService.update(externalTodo);
+        final ToDo internalTodo = todoService.update(request.id(), externalTodo);
         return RestResponse.ok(TodoResource.MAPPER.mapToResource(internalTodo));
     }
 }

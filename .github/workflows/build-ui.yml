@@ -20,7 +20,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.key }}
+          password: ${{ secrets.key }}
 
       - name: Install buildx
         id: buildx

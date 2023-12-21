@@ -1,16 +1,24 @@
 package de.klein.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import lombok.*;
 
-@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Builder
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString
 public class ToDo extends EntityParent {
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "NOTES")
     private String notes;
+
+    @Column(name = "PRIO")
     private String priority;
 
     public void update(final ToDo externalTodo) {

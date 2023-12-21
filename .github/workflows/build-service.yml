@@ -5,6 +5,8 @@ on:
     branches: [ "main" ]
     paths-ignore:
       - '.github/**'
+      - '.gitignore'
+      - 'todo-infra/**'
       - 'README.md'
       - 'todo-ui/**'
   workflow_dispatch:

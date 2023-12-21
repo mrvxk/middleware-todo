@@ -44,14 +44,12 @@ jobs:
       - name: Build module packages with Maven
         run: mvn -B clean install -f pom.xml
 
-      - name: Build and publish service image
-        run: mvn clean compile com.google.cloud.tools:jib-maven-plugin:build -f pom.xml -Dversion=${{ steps.tag.outputs.new_tag }}
-
       - name: Install buildx
         id: buildx
         uses: crazy-max/ghaction-docker-buildx@v1
         with:
           buildx-version: latest
+          
       - name: build the Docker image and push to dockerhub
         run: |
           docker buildx build --push \

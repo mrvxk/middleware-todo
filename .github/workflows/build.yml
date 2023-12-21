@@ -41,6 +41,6 @@ jobs:
         run: |
           docker buildx build --push \
           --tag mrvxk/middleware-todo-service:latest \
-          --file todo-servcice/src/main/docker/Dockerfile.jvm \
+          --file todo-service/src/main/docker/Dockerfile.jvm \
           --platform linux/amd64,linux/arm/v7,linux/arm64 ./todo-service
 

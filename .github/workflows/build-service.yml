@@ -1,4 +1,4 @@
-name: Java and Docker Image Build
+name: Quarkus Docker Image Build
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - '.github/**'
       - 'README.md'
+      - 'todo-ui/**'
   workflow_dispatch:
 
 jobs:

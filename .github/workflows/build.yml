@@ -37,9 +37,10 @@ jobs:
         with:
           buildx-version: latest
           
-      - name: build the Docker image and push to dockerhub
+      - name: build the Docker image and push to github
         run: |
           docker buildx build --push \
-          --tag pigtastic/gaia-server:latest \
-          --file src/main/docker/Dockerfile.jvm
+          --tag mrvxk/middleware-todo-service:latest \
+          --file src/main/docker/Dockerfile.jvm \
           --platform linux/amd64,linux/arm/v7,linux/arm64 ./todo-service
+

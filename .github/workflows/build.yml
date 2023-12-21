@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.key }}
 
       - name: Build module packages with Maven
-        run: mvn -B clean install -f pom.xml
+        run: mvn -B clean install -f todo-service/pom.xml
 
       - name: Install buildx
         id: buildx
@@ -42,4 +42,4 @@ jobs:
           docker buildx build --push \
           --tag pigtastic/gaia-server:${{ steps.tag.outputs.new_tag }} \
           --f src/main/docker/Dockerfile.jvm
-          --platform linux/amd64,linux/arm/v7,linux/arm64 .
+          --platform linux/amd64,linux/arm/v7,linux/arm64 ./todo-service

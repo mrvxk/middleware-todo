@@ -37,7 +37,7 @@ jobs:
         with:
           buildx-version: latest
           
-      - name: build the Docker image and push to github
+      - name: Build the Docker image and push to github
         run: |
           docker buildx build --push \
           --tag ghcr.io/mrvxk/middleware-todo-service:latest \

@@ -4,9 +4,9 @@ quarkus:
         generation: create
   datasource:
     jdbc:
-      url: jdbc:postgresql://localhost:5432/quarkus_demo
+      url: jdbc:postgresql://postgres:5432/db
     username: postgres
-    password: sercret
+    password: secret
   http:
     cors:
       ~: true

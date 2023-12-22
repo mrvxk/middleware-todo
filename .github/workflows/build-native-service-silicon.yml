@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -30,6 +30,16 @@ jobs:
           java --version
           native-image --version
 
+      - name: Setup docker (missing on MacOS)
+        if: runner.os == 'macos'
+        run: |
+          brew install docker
+          colima start
+          
+          # For testcontainers to find the Colima socket
+          # https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running
+          sudo ln -sf $HOME/.colima/default/docker.sock /var/run/docker.sock
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
@@ -38,7 +48,7 @@ jobs:
           password: ${{ secrets.key }}
 
       - name: Build module packages with Maven
-        run: mvn -B clean install -Dnative -Dquarkus.native.container-build=true -f todo-service/pom.xml
+        run: mvn -B install -DskipTests -Dnative -Dquarkus.native.container-build=true -f todo-service/pom.xml
 
       - name: Install buildx
         id: buildx
@@ -49,6 +59,6 @@ jobs:
       - name: Build the Docker image and push to github
         run: |
           docker buildx build --push \
-          --tag ghcr.io/mrvxk/middleware-todo-native-service:latest \
+          --tag ghcr.io/mrvxk/middleware-todo-native-silicon-service:latest \
           --file todo-service/src/main/docker/Dockerfile.native-micro \
-          --platform linux/amd64,linux/arm64 ./todo-service
+          --platform linux/arm64 ./todo-service

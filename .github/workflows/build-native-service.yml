@@ -43,7 +43,7 @@ jobs:
           password: ${{ secrets.key }}
 
       - name: Build module packages with Maven
-        run: mvn -B install -Dnative -Dquarkus.native.container-build=true -f todo-service/pom.xml
+        run: mvn -B install -DskipTests -Dnative -Dquarkus.native.container-build=true -f todo-service/pom.xml
 
       - name: Install buildx
         id: buildx

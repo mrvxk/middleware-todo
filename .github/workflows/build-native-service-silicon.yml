@@ -1,4 +1,4 @@
-name: Quarkus Native Docker Image Build
+name: Quarkus Native Silicon Docker Image Build
 
 on:
   push:

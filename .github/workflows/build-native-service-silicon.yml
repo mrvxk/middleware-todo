@@ -48,17 +48,13 @@ jobs:
           password: ${{ secrets.key }}
 
       - name: Build module packages with Maven
-        run: mvn -B install -DskipTests -Dnative -Dquarkus.native.container-build=true -f todo-service/pom.xml
+        run: mvn -B install -Dnative -Dquarkus.native.container-build=true -f todo-service/pom.xml
 
-      - name: Install buildx
-        id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
-        with:
-          buildx-version: latest
-
-      - name: Build the Docker image and push to github
+      - name: Build the Docker image
         run: |
-          docker buildx build --push \
-          --tag ghcr.io/mrvxk/middleware-todo-native-silicon-service:latest \
-          --file todo-service/src/main/docker/Dockerfile.native-micro \
-          --platform linux/arm64 ./todo-service
+          docker build \
+            --tag ghcr.io/mrvxk/middleware-todo-native-silicon-service:latest \
+            --file todo-service/src/main/docker/Dockerfile.native-micro ./todo-service
+
+      - name: Push to github container registry
+        run: docker push ghcr.io/mrvxk/middleware-todo-native-silicon-service:latest

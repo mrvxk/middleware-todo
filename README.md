@@ -47,6 +47,7 @@ runner exceeds the requirements for this proof of concept, and I am currently sa
 ## Run the application
 
 ### Docker Compose
+TODO: Explain different compose files
 
 ### Configuration
 
@@ -62,4 +63,8 @@ For the user interface component, which is served by `Nginx`, the default port u
 access this UI externally, you would also configure Docker to expose this internal port to an external port. The choice
 of the external port is flexible, allowing you to select a port that fits your network configuration and avoids
 conflicts with other services.
+
+### Environment Variables
+
+TODO: Explanation of all possible envs
 

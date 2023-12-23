@@ -3,6 +3,7 @@ quarkus:
       database:
         generation: drop-and-create
   http:
+    port: 8080
     cors:
       ~: true
       origins: "*"

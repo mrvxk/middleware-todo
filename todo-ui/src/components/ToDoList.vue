@@ -37,7 +37,7 @@
 import {ref, reactive, onMounted} from 'vue';
 import {Api, TodoResource} from "@/api/TodoService";
 
-const api = new Api({ baseUrl: 'http://82.165.178.16:8080' });
+const api = new Api({ baseUrl: 'http://82.165.178.16:8020' });
 let data = ref<TodoResource[]>([]);
 let editingStatus = reactive(new Map<string, boolean>());
 

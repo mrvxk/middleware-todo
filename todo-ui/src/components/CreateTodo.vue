@@ -19,7 +19,7 @@
 import { ref } from 'vue';
 import { Api, TodoResource } from "@/api/TodoService";
 
-const api = new Api({ baseUrl: 'http://82.165.178.16:8020' });
+const api = new Api({ baseUrl: import.meta.env.VITE_BE_URL});
 const newTodo = ref({ name: '', notes: '' });
 
 const addTodo = async () => {

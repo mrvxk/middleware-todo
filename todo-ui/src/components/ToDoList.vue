@@ -37,15 +37,17 @@
 import {ref, reactive, onMounted} from 'vue';
 import {Api, TodoResource} from "@/api/TodoService";
 
-const api = new Api({ baseUrl: 'http://82.165.178.16:8020' });
+const api = new Api({baseUrl: import.meta.env.VITE_BE_URL});
 let data = ref<TodoResource[]>([]);
 let editingStatus = reactive(new Map<string, boolean>());
 
 onMounted(async () => {
   const response = await api.todos.todosList();
-  data.value = response.data;
-  console.log(response.data)
-  data.value.forEach(todo => editingStatus.set(todo.id!, false));
+  if (response.data) {
+    data.value = response.data;
+    console.log(response.data)
+    data.value.forEach(todo => editingStatus.set(todo.id!, false));
+  }
 });
 
 const isEditing = (id: string) => editingStatus.get(id);

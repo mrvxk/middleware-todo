@@ -46,8 +46,26 @@ runner exceeds the requirements for this proof of concept, and I am currently sa
 
 ## Run the application
 
+### Development mode
+To start the development mode for the project, follow these steps: In the backend directory `/todo-service`, run the
+command `./mvnw compile quarkus:dev`. For the frontend, located in the `/todo-ui` directory, execute `npm/yarn install`
+followed by `npm/yarn run dev`. Refer to the `README.md` files in each directory for more detailed information.
+
 ### Docker Compose
-TODO: Explain different compose files
+
+You can run the application local when using on of the given docker compose files in `/todo-infra`.
+All compose files uses public images which can be found at [this github container registry](https://github.com/mrvxk?tab=packages&repo_name=middleware-todo).
+
+
+| Name                                | Description                             |
+|-------------------------------------|-----------------------------------------|
+| `docker-compose.yml`                | JVM mode compose file                   |         
+| `docker-compose-native.yml`         | Native mode compose file                |         
+| `docker-compose-native-silicon.yml` | Silicon specific native compose file    |         
+
+Use this command to deploy locally:
+> docker-compose -f <path to compose file> up
+
 
 ### Configuration
 
@@ -57,7 +75,8 @@ Docker's configuration, where you link the internal port `8080` to an external p
 
 If you need to change the internal port of the backend service from `8080` to a different one, this can be accomplished
 using an environment variable. In our setup, the `HTTP_PORT` environment variable is used for this purpose. By setting
-`HTTP_PORT` to the desired port number, you instruct the backend service to listen on this new port inside the container.
+`HTTP_PORT` to the desired port number, you instruct the backend service to listen on this new port inside the
+container.
 
 For the user interface component, which is served by `Nginx`, the default port used inside the container is `80`. To
 access this UI externally, you would also configure Docker to expose this internal port to an external port. The choice
@@ -66,5 +85,16 @@ conflicts with other services.
 
 ### Environment Variables
 
-TODO: Explanation of all possible envs
+| Name          | Description               | Default |
+|---------------|---------------------------|---------|
+| `DB_URL`      | URL of the database       |         |
+| `DB_USERNAMe` | Username for the database |         |
+| `DB_PASSWORD` | Password for the database |         |
+| `DB_PORT`     | Port of the database      |         |
+| `DB_NAME`     | Name of the database      |         |
+| `HTTP_PORT`   | Port of backend service   | `8080`  |
 
+### DEMO
+
+One can find a demo ui [here](http://82.165.178.16:3200) and swagger
+documentation [here](http://82.165.178.16:8020/q/swagger-ui/).

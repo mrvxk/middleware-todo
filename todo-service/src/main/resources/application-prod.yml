@@ -11,6 +11,6 @@ quarkus:
     port: ${HTTP_PORT:8080}
     cors:
       ~: true
-      origins: "*"
+      origins: ${CORS_ORIGINS}
   swagger-ui:
     always-include: true

@@ -1,54 +1,47 @@
 <template>
-  <div class="todo-list">
+  <v-container class="todo-list">
     <v-list lines="one">
       <v-list-item
           v-for="todo in data.values()"
           :key="todo.id"
           class="todo-item"
       >
-        <div class="todo-content">
-          <div v-if="isEditing(todo.id)" class="todo-edit-fields">
-            <input
+        <div class="todo-content border pa-4">
+          <div v-if="isEditing(todo.id)" class="todo-edit-fields d-flex flex-row ma-2 flex-grow-1">
+            <v-text-field
                 v-model="todo.name"
                 class="todo-input"
                 @keyup.enter="updateTodo(todo)"
-                @blur="stopEditing(todo.id)"
             />
-            <textarea
+            <v-text-field
                 v-model="todo.notes"
                 class="todo-textarea"
                 @keyup.enter="updateTodo(todo)"
-                @blur="stopEditing(todo.id)"
-            ></textarea>
+            ></v-text-field>
+            <button @click="updateTodo(todo)" class="save-btn">Save</button>
           </div>
-          <div v-else class="todo-display-fields" @click="startEditing(todo.id)">
-            <h3 class="todo-title">{{ todo.name }}</h3>
-            <p class="todo-subtitle">{{ todo.notes }}</p>
+          <div v-else class="todo-display-fields d-flex flex-row ma-2 flex-grow-1" @click="startEditing(todo.id)">
+            <h3 class="text-center w-50 ma-0 todo-title">{{ todo.name }}</h3>
+            <p class="w-50 ma-0 text-center">{{ todo.notes }}</p>
           </div>
+          <button @click="deleteTodo(todo.id)" class="delete-btn">Delete</button>
         </div>
-        <button @click="deleteTodo(todo.id)" class="delete-btn">Delete</button>
       </v-list-item>
     </v-list>
-  </div>
+  </v-container>
 </template>
 
 
 <script setup lang="ts">
-import {ref, reactive, onMounted} from 'vue';
+import {reactive} from 'vue';
 import {Api, TodoResource} from "@/api/TodoService";
 
 const api = new Api({baseUrl: import.meta.env.VITE_BE_URL});
-let data = ref<TodoResource[]>([]);
 let editingStatus = reactive(new Map<string, boolean>());
+const emit = defineEmits(['item-deleted', 'item-updated']);
 
-onMounted(async () => {
-  const response = await api.todos.todosList();
-  if (response.data) {
-    data.value = response.data;
-    console.log(response.data)
-    data.value.forEach(todo => editingStatus.set(todo.id!, false));
-  }
-});
+defineProps({data: {type: Array as () => TodoResource[], required: true}})
+
 
 const isEditing = (id: string) => editingStatus.get(id);
 
@@ -61,15 +54,17 @@ const stopEditing = (id: string) => {
 };
 
 const updateTodo = async (todo: TodoResource) => {
+  console.log(todo)
   if (todo.id) {
     await api.todos.todosUpdate(todo);
     stopEditing(todo.id);
+    emit('item-updated');
   }
 };
 
 const deleteTodo = async (id: string) => {
   await api.todos.deleteDelete(id);
-  data.value = data.value.filter(todo => todo.id !== id);
+  emit('item-deleted');
 };
 </script>
 
@@ -95,7 +90,7 @@ const deleteTodo = async (id: string) => {
 }
 
 .todo-edit-fields, .todo-display-fields {
-  flex-grow: 1;
+
 }
 
 .todo-title {
@@ -105,11 +100,6 @@ const deleteTodo = async (id: string) => {
   margin-right: 10px;
 }
 
-.todo-subtitle {
-  width: 100px;
-  margin: 0;
-}
-
 .delete-btn {
   background-color: #ff4d4d;
   color: white;
@@ -117,6 +107,18 @@ const deleteTodo = async (id: string) => {
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
+  height: 60px;
+  margin-top: 8px;
+}
+
+.save-btn {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 60px;
 }
 
 .delete-btn:hover {

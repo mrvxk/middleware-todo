@@ -56,7 +56,7 @@ conflicts with other services.
 | Name           | Description                             | Default |
 |----------------|-----------------------------------------|---------|
 | `DB_URL`       | URL of the database                     |         |
-| `DB_USERNAMe`  | Username for the database               |         |
+| `DB_USERNAME`  | Username for the database               |         |
 | `DB_PASSWORD`  | Password for the database               |         |
 | `DB_PORT`      | Port of the database                    |         |
 | `DB_NAME`      | Name of the database                    |         |

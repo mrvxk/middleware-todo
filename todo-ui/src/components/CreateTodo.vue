@@ -1,32 +1,33 @@
 <template>
   <div class="add-todo-form">
-    <input
+    <v-text-field
         v-model="newTodo.name"
         type="text"
         placeholder="Todo-Name"
-        class="todo-input"
+        class="todo-input ma-1"
     />
-    <textarea
+    <v-textarea
         v-model="newTodo.notes"
-        placeholder="Notizen"
+        placeholder="Notes"
         class="todo-textarea"
-    ></textarea>
+    ></v-textarea>
     <button @click="addTodo" class="add-btn">Todo hinzufügen</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Api, TodoResource } from "@/api/TodoService";
+import {ref} from 'vue';
+import {Api, TodoResource} from "@/api/TodoService";
 
-const api = new Api({ baseUrl: import.meta.env.VITE_BE_URL});
-const newTodo = ref({ name: '', notes: '' });
+const api = new Api({baseUrl: import.meta.env.VITE_BE_URL});
+let newTodo = ref({name: '', notes: ''} as TodoResource);
+const emit = defineEmits(['item-added']);
 
 const addTodo = async () => {
-  if (newTodo.value.name) {
+  if (newTodo.value.name ) {
     await api.todos.todosCreate(newTodo.value);
-    newTodo.value = { name: '', notes: '' }; // Zurücksetzen des Formulars
-    // Emit an event or update a global state here if needed
+    emit('item-added');
+    newTodo = ref({name: '', notes: ''});
   }
 };
 </script>

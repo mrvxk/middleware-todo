@@ -53,14 +53,15 @@ conflicts with other services.
 
 ### Environment Variables
 
-| Name          | Description               | Default |
-|---------------|---------------------------|---------|
-| `DB_URL`      | URL of the database       |         |
-| `DB_USERNAMe` | Username for the database |         |
-| `DB_PASSWORD` | Password for the database |         |
-| `DB_PORT`     | Port of the database      |         |
-| `DB_NAME`     | Name of the database      |         |
-| `HTTP_PORT`   | Port of backend service   | `8080`  |
+| Name           | Description                             | Default |
+|----------------|-----------------------------------------|---------|
+| `DB_URL`       | URL of the database                     |         |
+| `DB_USERNAMe`  | Username for the database               |         |
+| `DB_PASSWORD`  | Password for the database               |         |
+| `DB_PORT`      | Port of the database                    |         |
+| `DB_NAME`      | Name of the database                    |         |
+| `HTTP_PORT`    | Port of backend service                 | `8080`  |
+| `CORS_ORIGINS` | Comma separated list of allowed origins |         |
 
 ## Why Quarkus?
 

@@ -7,6 +7,8 @@
 
 ## Run the application
 
+> NOTICE: Dark mode is not supported, but couldn't be disabled. If you want the correct display of the UI please change your system theme to `light`!
+
 ### Development mode
 To start the development mode for the project, follow these steps: In the backend directory `/todo-service`, run the
 command `./mvnw compile quarkus:dev`. For the frontend, located in the `/todo-ui` directory, execute `npm/yarn install`
